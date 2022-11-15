@@ -32,7 +32,7 @@ function addNewItem(e) {
     li.appendChild(document.createTextNode(input.value));
     /*Create delete button in list items*/
     const a = document.createElement("a");
-    a.classList = "delete-item float-end btn btn-danger btn-sm btnDeleteItem";
+    a.classList = "delete-item float-end btn btn-danger btn-sm";
     a.setAttribute('href', '#');
     a.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
     /*Merge new list item's elements*/
