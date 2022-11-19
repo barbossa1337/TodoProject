@@ -18,6 +18,37 @@ function eventListeners() {
     taskList.addEventListener('click', deleteAnItem);
     //Delete All Items
     btnDeleteAll.addEventListener("click", deleteAllItems);
+    //Edit An Item
+    taskList.addEventListener("click", editAnItem);
+}
+
+//Edit An Item
+function editAnItem(e) {
+    console.log(e.target.parentElement.parentElement);
+    if (input.value === "") {
+        error.innerHTML = "Write something to edit a task!";
+        setTimeout(function () {
+            error.innerHTML = "";
+        }, 4000);
+    } else {
+        if (e.target.className === 'fa-solid fa-pen-to-square') {
+            if (confirm("Do you want to edit this task?")) {
+                e.target.parentElement.parentElement.textContent = input.value;
+            }
+            // Delete Button
+            const a = document.createElement('a');
+            a.classList = 'delete-item float-end btn btn-primary btn-sm ms-2';
+            a.setAttribute('href', '#');
+            a.innerHTML = '<i class="fa-solid fa-rectangle-xmark"></i>';
+            // ???
+            //Edit Button
+            const btnEdit = document.createElement("a");
+            btnEdit.href = "#";
+            btnEdit.classList = "edit-item float-end btn btn-warning btn-sm";
+            btnEdit.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
+            // ????
+        }
+    }
 }
 
 //Delete All Items
@@ -70,12 +101,18 @@ function createItem(text) {
     li.appendChild(document.createTextNode(text));
     //Anchor Items
     const a = document.createElement('a');
-    a.classList = 'delete-item float-end';
+    a.classList = 'delete-item float-end btn btn-primary btn-sm ms-2';
     a.setAttribute('href', '#');
     a.innerHTML = '<i class="fa-solid fa-rectangle-xmark"></i>';
     //Append elements
     li.appendChild(a);
     taskList.appendChild(li);
+    //Edit Button
+    const btnEdit = document.createElement("a");
+    btnEdit.href = "#";
+    btnEdit.classList = "edit-item float-end btn btn-warning btn-sm";
+    btnEdit.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
+    li.appendChild(btnEdit);
 }
 
 //Set Items To LS
