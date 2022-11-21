@@ -36,7 +36,7 @@ function editAnItem(e) {
                 edittedTodo.textContent = input.value;
                 input.value = "";
             }
-            // Delete Button
+            //Delete Button
             const a = document.createElement('a');
             a.classList = 'delete-item float-end btn btn-primary btn-sm ms-2';
             a.setAttribute('href', '#');
