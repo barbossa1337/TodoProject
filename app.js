@@ -33,9 +33,10 @@ function editAnItem(e) {
     } else {
         if (e.target.className === 'fa-solid fa-pen-to-square') {
             if (confirm("Do you want to edit this task?")) {
+                editItemFromLS(edittedTodo.textContent, input.value);
                 edittedTodo.textContent = input.value;
                 input.value = "";
-            }
+
             //Delete Button
             const a = document.createElement('a');
             a.classList = 'delete-item float-end btn btn-primary btn-sm ms-2';
@@ -48,6 +49,8 @@ function editAnItem(e) {
             btnEdit.classList = "edit-item float-end btn btn-warning btn-sm";
             btnEdit.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
             edittedTodo.appendChild(btnEdit);
+
+            }
         }
     }
 }
@@ -139,6 +142,16 @@ function deleteItemFromLS(text) {
     items.forEach(function (todo, index) {
         if (todo === text)
             items.splice(index, 1);
+    });
+    localStorage.setItem('tasks', JSON.stringify(items));
+}
+
+//Edit An Item From LS
+function editItemFromLS(oldTodo, newTodo) {
+    items = getItemsFromLS();
+    items.forEach(function (todo, index) {
+        if (todo === oldTodo)
+            items[index] = newTodo;
     });
     localStorage.setItem('tasks', JSON.stringify(items));
 }
